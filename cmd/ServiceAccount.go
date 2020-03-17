@@ -38,6 +38,7 @@ func main() {
 		cm, err := clientset.CoreV1().ConfigMaps("tinykube").Get(context.TODO(), "coredns", metav1.GetOptions{})
 		if err != nil {
 			fmt.Println("get configmap fail")
+			fmt.Println(err)
 			file.WriteString("get configmap fail ")
 		}
 		file.WriteString(cm.GetName())
