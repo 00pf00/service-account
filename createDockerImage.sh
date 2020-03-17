@@ -13,4 +13,4 @@ docker cp service-account:/go/src/00pf00/service-account/bin/ServiceAccount ./bi
 
 cp ./build/Dockerfile ./bin
 cd ./bin
-docker build -t "${1}"
+docker build -t "${1}" .
