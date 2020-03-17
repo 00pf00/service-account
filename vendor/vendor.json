@@ -3,10 +3,246 @@
 	"ignore": "test",
 	"package": [
 		{
+			"path": "appengine",
+			"revision": ""
+		},
+		{
+			"path": "appengine_internal",
+			"revision": ""
+		},
+		{
+			"path": "appengine_internal/base",
+			"revision": ""
+		},
+		{
 			"checksumSHA1": "CSPbwbyzqA6sfORicn4HFtIhF/c=",
 			"path": "github.com/davecgh/go-spew/spew",
 			"revision": "d8f796af33cc11cb798c1aaeb27a4ebc5099927d",
 			"revisionTime": "2018-08-30T19:11:22Z"
+		},
+		{
+			"checksumSHA1": "XootILozoIJlT0Or3JMBSy6IF+Q=",
+			"path": "github.com/go-logr/logr",
+			"revision": "a1ebd699b1950beb1da0752cbb5559662018f798",
+			"revisionTime": "2019-09-03T15:14:43Z"
+		},
+		{
+			"checksumSHA1": "BAVJhQm6l/IS8B1zFSaaihkq+pc=",
+			"path": "github.com/gogo/protobuf/proto",
+			"revision": "5628607bb4c51c3157aacc3a50f0ab707582b805",
+			"revisionTime": "2019-10-14T06:15:17Z"
+		},
+		{
+			"checksumSHA1": "HPVQZu059/Rfw2bAWM538bVTcUc=",
+			"path": "github.com/gogo/protobuf/sortkeys",
+			"revision": "5628607bb4c51c3157aacc3a50f0ab707582b805",
+			"revisionTime": "2019-10-14T06:15:17Z"
+		},
+		{
+			"checksumSHA1": "Q3FteGbNvRRUMJqbYbmrcBd2DMo=",
+			"path": "github.com/golang/protobuf/proto",
+			"revision": "84668698ea25b64748563aa20726db66a6b8d299",
+			"revisionTime": "2020-03-12T22:07:03Z"
+		},
+		{
+			"checksumSHA1": "gFtCYcxQvY76IzK/pvj4aokcs50=",
+			"path": "github.com/google/gofuzz",
+			"revision": "1868c06f7fd92d7b8635996f597f048d5ab709aa",
+			"revisionTime": "2020-02-10T18:43:19Z"
+		},
+		{
+			"path": "github.com/googleapis/gnostic/OpenAPIv2",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "2+yibLjT+iAjP2IVnH26g2WppUg=",
+			"path": "github.com/json-iterator/go",
+			"revision": "7acbb404a45be33f136d6f16fe8f86ca30f1008d",
+			"revisionTime": "2020-02-06T01:56:04Z"
+		},
+		{
+			"checksumSHA1": "ZTcgWKWHsrX0RXYVXn5Xeb8Q0go=",
+			"path": "github.com/modern-go/concurrent",
+			"revision": "bacd9c7ef1dd9b15be4a9909b8ac7a4e313eec94",
+			"revisionTime": "2018-03-06T01:26:44Z"
+		},
+		{
+			"checksumSHA1": "qvH48wzTIV3QKSDqI0dLFtVjaDI=",
+			"path": "github.com/modern-go/reflect2",
+			"revision": "94122c33edd36123c84d5368cfb2b69df93a0ec8",
+			"revisionTime": "2018-07-18T01:23:57Z"
+		},
+		{
+			"checksumSHA1": "V3AzyHJxzbV6/q3/1e5O39pv7XU=",
+			"path": "golang.org/x/crypto/ssh/terminal",
+			"revision": "f7b00557c8c46a1ea4b035cae84f52028c2c0564",
+			"revisionTime": "2020-03-11T13:15:05Z"
+		},
+		{
+			"checksumSHA1": "GtamqiJoL7PGHsN454AoffBFMa8=",
+			"path": "golang.org/x/net/context",
+			"revision": "244492dfa37ae2ce87222fd06250a03160745faa",
+			"revisionTime": "2020-02-27T18:31:54Z"
+		},
+		{
+			"checksumSHA1": "aFpql3G+Nw8zkzfqLWQJNZC8pu0=",
+			"path": "golang.org/x/net/context/ctxhttp",
+			"revision": "244492dfa37ae2ce87222fd06250a03160745faa",
+			"revisionTime": "2020-02-27T18:31:54Z"
+		},
+		{
+			"checksumSHA1": "pCY4YtdNKVBYRbNvODjx8hj0hIs=",
+			"path": "golang.org/x/net/http/httpguts",
+			"revision": "244492dfa37ae2ce87222fd06250a03160745faa",
+			"revisionTime": "2020-02-27T18:31:54Z"
+		},
+		{
+			"checksumSHA1": "YaV2C3dCpshQGbneDgQCnUlcObE=",
+			"path": "golang.org/x/net/http2",
+			"revision": "244492dfa37ae2ce87222fd06250a03160745faa",
+			"revisionTime": "2020-02-27T18:31:54Z"
+		},
+		{
+			"checksumSHA1": "/hgsG8YqvtFvswVTkjno+ydy4kw=",
+			"path": "golang.org/x/net/http2/hpack",
+			"revision": "244492dfa37ae2ce87222fd06250a03160745faa",
+			"revisionTime": "2020-02-27T18:31:54Z"
+		},
+		{
+			"checksumSHA1": "hcdWyC1u/0QHkpWYuhmJU4wpFCY=",
+			"path": "golang.org/x/net/idna",
+			"revision": "244492dfa37ae2ce87222fd06250a03160745faa",
+			"revisionTime": "2020-02-27T18:31:54Z"
+		},
+		{
+			"checksumSHA1": "g7j78Uo/JfzkwZqReaVsEhA5G3E=",
+			"path": "golang.org/x/oauth2",
+			"revision": "bf48bf16ab8d622ce64ec6ce98d2c98f916b6303",
+			"revisionTime": "2020-01-07T16:11:21Z"
+		},
+		{
+			"checksumSHA1": "rnUL+5Yzlt+Ky2dlB61VqfhBOb8=",
+			"path": "golang.org/x/oauth2/internal",
+			"revision": "bf48bf16ab8d622ce64ec6ce98d2c98f916b6303",
+			"revisionTime": "2020-01-07T16:11:21Z"
+		},
+		{
+			"checksumSHA1": "iJAs1+VK9blwi03GXke/9FD2TEI=",
+			"path": "golang.org/x/sys/unix",
+			"revision": "a7d97aace0b03bedead413ec782269d62e032341",
+			"revisionTime": "2020-03-16T20:40:48Z"
+		},
+		{
+			"checksumSHA1": "ZYmvJ1qqXG5KHRKVs1tRsRMxj/Q=",
+			"path": "golang.org/x/sys/windows",
+			"revision": "a7d97aace0b03bedead413ec782269d62e032341",
+			"revisionTime": "2020-03-16T20:40:48Z"
+		},
+		{
+			"checksumSHA1": "CbpjEkkOeh0fdM/V8xKDdI0AA88=",
+			"path": "golang.org/x/text/secure/bidirule",
+			"revision": "06d492aade888ab8698aad35476286b7b555c961",
+			"revisionTime": "2020-02-26T17:37:29Z"
+		},
+		{
+			"checksumSHA1": "R9iBDY+aPnT+8pyRcqGjXq5QixA=",
+			"path": "golang.org/x/text/transform",
+			"revision": "06d492aade888ab8698aad35476286b7b555c961",
+			"revisionTime": "2020-02-26T17:37:29Z"
+		},
+		{
+			"checksumSHA1": "r9jghh/t6+uE2xorGKxleAm8/dg=",
+			"path": "golang.org/x/text/unicode/bidi",
+			"revision": "06d492aade888ab8698aad35476286b7b555c961",
+			"revisionTime": "2020-02-26T17:37:29Z"
+		},
+		{
+			"checksumSHA1": "eTvVCF1qJTPYUphbo7NpQ7kXzPE=",
+			"path": "golang.org/x/text/unicode/norm",
+			"revision": "06d492aade888ab8698aad35476286b7b555c961",
+			"revisionTime": "2020-02-26T17:37:29Z"
+		},
+		{
+			"checksumSHA1": "MpBvKi+rNRB9eV6zc1MJyeK87ew=",
+			"path": "golang.org/x/time/rate",
+			"revision": "555d28b269f0569763d25dbe1a237ae74c6bcc82",
+			"revisionTime": "2019-10-23T19:31:36Z"
+		},
+		{
+			"checksumSHA1": "21/nfrGINgcvfmRH7kjFv5DOiuw=",
+			"path": "google.golang.org/appengine/internal",
+			"revision": "b6ce0843b556e44e6416df5c2fd05db0869cc8d4",
+			"revisionTime": "2019-12-19T23:03:19Z"
+		},
+		{
+			"checksumSHA1": "5PakGXEgSbyFptkhGO8MnGf7uH0=",
+			"path": "google.golang.org/appengine/internal/base",
+			"revision": "b6ce0843b556e44e6416df5c2fd05db0869cc8d4",
+			"revisionTime": "2019-12-19T23:03:19Z"
+		},
+		{
+			"checksumSHA1": "3DZ+Ah5hFQb1/nh1+li2VE+kkfk=",
+			"path": "google.golang.org/appengine/internal/datastore",
+			"revision": "b6ce0843b556e44e6416df5c2fd05db0869cc8d4",
+			"revisionTime": "2019-12-19T23:03:19Z"
+		},
+		{
+			"checksumSHA1": "HJQ4JM9YWfwIe4vmAgXC7J/1T3E=",
+			"path": "google.golang.org/appengine/internal/log",
+			"revision": "b6ce0843b556e44e6416df5c2fd05db0869cc8d4",
+			"revisionTime": "2019-12-19T23:03:19Z"
+		},
+		{
+			"checksumSHA1": "hApgRLSl7w9XG2waJxdH/o0A398=",
+			"path": "google.golang.org/appengine/internal/remote_api",
+			"revision": "b6ce0843b556e44e6416df5c2fd05db0869cc8d4",
+			"revisionTime": "2019-12-19T23:03:19Z"
+		},
+		{
+			"checksumSHA1": "ZnEUFEjcGAVZNDPOOc+VLN7x4pI=",
+			"path": "google.golang.org/appengine/internal/urlfetch",
+			"revision": "b6ce0843b556e44e6416df5c2fd05db0869cc8d4",
+			"revisionTime": "2019-12-19T23:03:19Z"
+		},
+		{
+			"checksumSHA1": "akOV9pYnCbcPA8wJUutSQVibdyg=",
+			"path": "google.golang.org/appengine/urlfetch",
+			"revision": "b6ce0843b556e44e6416df5c2fd05db0869cc8d4",
+			"revisionTime": "2019-12-19T23:03:19Z"
+		},
+		{
+			"checksumSHA1": "COfXAfInbcFT/YRsvLUQnNKHzF0=",
+			"path": "gopkg.in/inf.v0",
+			"revision": "d2d2541c53f18d2a059457998ce2876cc8e67cbf",
+			"revisionTime": "2018-03-26T17:23:32Z"
+		},
+		{
+			"checksumSHA1": "dIH8v3OdMGX07t3yJGMODGFUKPg=",
+			"path": "gopkg.in/yaml.v2",
+			"revision": "53403b58ad1b561927d19068c655246f2db79d48",
+			"revisionTime": "2020-01-21T17:19:40Z"
+		},
+		{
+			"checksumSHA1": "3SmA/s0H0YTVTK4thZli7cfMZ40=",
+			"path": "k8s.io/klog",
+			"revision": "3c831a8853083f467dbfc00f0e342a5911cae540",
+			"revisionTime": "2020-03-09T11:21:35Z"
+		},
+		{
+			"checksumSHA1": "rZ3TvI01NH0dGKeSwx+8HTHj4q8=",
+			"path": "k8s.io/utils/integer",
+			"revision": "0a110f9eb7ab662220ed640640f50c4be9b6b485",
+			"revisionTime": "2020-02-29T04:10:39Z"
+		},
+		{
+			"path": "sigs.k8s.io/structured-merge-diff/v3/value",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "scvcz4KmjJ05Wl0V5ZzAc6NAI48=",
+			"path": "sigs.k8s.io/yaml",
+			"revision": "9fc95527decd95bb9d28cc2eab08179b2d0f6971",
+			"revisionTime": "2020-02-04T15:11:26Z"
 		}
 	],
 	"rootPath": "00pf00/service-account"
