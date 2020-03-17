@@ -3,9 +3,10 @@
 	"ignore": "test",
 	"package": [
 		{
+			"checksumSHA1": "Imf3HOHDgA+zP8rDLwfCU9Y19uQ=",
 			"path": "k8s.io/client-go",
-			"revision": "",
-			"version": "v0.17.0"
+			"revision": "5194bac869679e2d68716e9eeddf23d3c13661e1",
+			"revisionTime": "2020-03-07T09:13:34Z"
 		}
 	],
 	"rootPath": "00pf00/service-account"
