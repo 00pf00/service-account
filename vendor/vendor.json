@@ -1,0 +1,12 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"path": "k8s.io/client-go",
+			"revision": "",
+			"version": "v0.17.0"
+		}
+	],
+	"rootPath": "00pf00/service-account"
+}
