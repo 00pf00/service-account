@@ -35,7 +35,7 @@ func main() {
 		fmt.Println("kubernetes.NewForConfig(config)")
 	}
 	for {
-		cm, err := clientset.CoreV1().ConfigMaps("tinykube").Get(context.TODO(), "codedns", metav1.GetOptions{})
+		cm, err := clientset.CoreV1().ConfigMaps("tinykube").Get(context.TODO(), "coredns", metav1.GetOptions{})
 		if err != nil {
 			fmt.Println("get configmap fail")
 			file.WriteString("get configmap fail ")
