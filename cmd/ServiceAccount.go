@@ -44,6 +44,9 @@ func main() {
 		}
 		file.WriteString(cm.GetName())
 		fmt.Println(cm.GetName())
+		for k, v := range cm.Data {
+			fmt.Printf("key = %s value = %s", k, v)
+		}
 		eps, err := clientset.CoreV1().Endpoints("tinykube").Get(context.TODO(), "proxycloud", metav1.GetOptions{})
 		if err != nil {
 			fmt.Println(err)
@@ -60,7 +63,7 @@ func main() {
 			fmt.Println(net.InterfaceAddrs())
 		}
 		for _, v := range addrs {
-			if ipnet, ok := v.(*net.IPNet); ok {
+			if ipnet, ok := v.(*net.IPNet); ok && !ipnet.IP.IsLoopback() {
 				if ipnet.IP.To4() != nil {
 					fmt.Println(ipnet.IP.To4())
 				}
