@@ -45,14 +45,98 @@
 			"revisionTime": "2020-03-12T22:07:03Z"
 		},
 		{
+			"checksumSHA1": "aEiR2m3NGaMGTbUW5P+w5gKFyc8=",
+			"path": "github.com/golang/protobuf/ptypes",
+			"revision": "84668698ea25b64748563aa20726db66a6b8d299",
+			"revisionTime": "2020-03-12T22:07:03Z"
+		},
+		{
+			"checksumSHA1": "fKjx2dIvFUxCLdUepI98YiHM5sw=",
+			"path": "github.com/golang/protobuf/ptypes/any",
+			"revision": "84668698ea25b64748563aa20726db66a6b8d299",
+			"revisionTime": "2020-03-12T22:07:03Z"
+		},
+		{
+			"checksumSHA1": "hXYsfSabFmhkZKPDQBBqdyzbY7k=",
+			"path": "github.com/golang/protobuf/ptypes/duration",
+			"revision": "84668698ea25b64748563aa20726db66a6b8d299",
+			"revisionTime": "2020-03-12T22:07:03Z"
+		},
+		{
+			"checksumSHA1": "dayZ4rJvq7qwXVr/g686AdY0vVs=",
+			"path": "github.com/golang/protobuf/ptypes/timestamp",
+			"revision": "84668698ea25b64748563aa20726db66a6b8d299",
+			"revisionTime": "2020-03-12T22:07:03Z"
+		},
+		{
 			"checksumSHA1": "gFtCYcxQvY76IzK/pvj4aokcs50=",
 			"path": "github.com/google/gofuzz",
 			"revision": "1868c06f7fd92d7b8635996f597f048d5ab709aa",
 			"revisionTime": "2020-02-10T18:43:19Z"
 		},
 		{
+			"checksumSHA1": "knyVYlPsu3h41WtMw2TbhYrU0yU=",
+			"path": "github.com/googleapis/gnostic",
+			"revision": "896953e6749863beec38e27029c804e88c3144b8",
+			"revisionTime": "2020-01-31T18:42:08Z"
+		},
+		{
 			"path": "github.com/googleapis/gnostic/OpenAPIv2",
 			"revision": ""
+		},
+		{
+			"checksumSHA1": "v/vCpD7Qr6ScCfNul2cm43AB3cs=",
+			"path": "github.com/googleapis/gnostic/compiler",
+			"revision": "896953e6749863beec38e27029c804e88c3144b8",
+			"revisionTime": "2020-01-31T18:42:08Z"
+		},
+		{
+			"checksumSHA1": "SrsVUP6tqcIXE9kdIfvM7PJu/x4=",
+			"path": "github.com/googleapis/gnostic/discovery",
+			"revision": "896953e6749863beec38e27029c804e88c3144b8",
+			"revisionTime": "2020-01-31T18:42:08Z"
+		},
+		{
+			"checksumSHA1": "hh0DZ9qlSpIEX/cPaUZo7OkzNiQ=",
+			"path": "github.com/googleapis/gnostic/extensions",
+			"revision": "896953e6749863beec38e27029c804e88c3144b8",
+			"revisionTime": "2020-01-31T18:42:08Z"
+		},
+		{
+			"checksumSHA1": "ggCbJD+1jvh9Xd2bFO9QzN8ba7k=",
+			"path": "github.com/googleapis/gnostic/jsonwriter",
+			"revision": "896953e6749863beec38e27029c804e88c3144b8",
+			"revisionTime": "2020-01-31T18:42:08Z"
+		},
+		{
+			"checksumSHA1": "QUCbtc3xaL2NNsZ8+1DDnMap8xs=",
+			"path": "github.com/googleapis/gnostic/lib",
+			"revision": "896953e6749863beec38e27029c804e88c3144b8",
+			"revisionTime": "2020-01-31T18:42:08Z"
+		},
+		{
+			"checksumSHA1": "kuaSikskVCkpA9mKmcWwqUX0+aE=",
+			"path": "github.com/googleapis/gnostic/openapiv2",
+			"revision": "896953e6749863beec38e27029c804e88c3144b8",
+			"revisionTime": "2020-01-31T18:42:08Z"
+		},
+		{
+			"checksumSHA1": "fIfyowd1kQxraTxpUKny8q7ig6Y=",
+			"path": "github.com/googleapis/gnostic/openapiv3",
+			"revision": "896953e6749863beec38e27029c804e88c3144b8",
+			"revisionTime": "2020-01-31T18:42:08Z"
+		},
+		{
+			"checksumSHA1": "476u50XMXQ6a9AYsjyfszraP4oE=",
+			"path": "github.com/googleapis/gnostic/plugins",
+			"revision": "896953e6749863beec38e27029c804e88c3144b8",
+			"revisionTime": "2020-01-31T18:42:08Z"
+		},
+		{
+			"checksumSHA1": "WuDwstwVT4d0gCK3hyb7pMg9NKc=",
+			"path": "github.com/googleapis/gnostic/surface",
+			"revision": "896953e6749863beec38e27029c804e88c3144b8",
+			"revisionTime": "2020-01-31T18:42:08Z"
 		},
 		{
 			"checksumSHA1": "2+yibLjT+iAjP2IVnH26g2WppUg=",
@@ -233,6 +317,10 @@
 			"path": "k8s.io/utils/integer",
 			"revision": "0a110f9eb7ab662220ed640640f50c4be9b6b485",
 			"revisionTime": "2020-02-29T04:10:39Z"
+		},
+		{
+			"path": "sigs.k8s.io/structured-merge-diff/v3",
+			"revision": ""
 		},
 		{
 			"path": "sigs.k8s.io/structured-merge-diff/v3/value",
