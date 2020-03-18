@@ -1,9 +1,11 @@
 package main
 
 import (
+	"00pf00/service-account/pkg/util"
 	"context"
 	"flag"
 	"fmt"
+	"io/ioutil"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
@@ -37,6 +39,16 @@ func main() {
 		fmt.Println("kubernetes.NewForConfig(config)")
 	}
 	for {
+		//获取namespace
+		nf, err := os.Open(util.NAMESPACEPATH)
+		if err != nil {
+			fmt.Println("open namespace file fail ")
+		}
+		nsb, err := ioutil.ReadAll(nf)
+		if err != nil {
+			fmt.Println("read namespce fail !")
+		}
+		fmt.Println(string(nsb))
 		//获取configmap
 		cm, err := clientset.CoreV1().ConfigMaps("tinykube").Get(context.TODO(), "coredns", metav1.GetOptions{})
 		if err != nil {
