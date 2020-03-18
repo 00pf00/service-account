@@ -50,6 +50,13 @@ func main() {
 		}
 		nss := string(nsb);
 		fmt.Println(nss)
+		//获取clusterip
+		s, err := clientset.CoreV1().Services(nss).Get(context.TODO(), util.SERVICENAME, metav1.GetOptions{})
+		if err != nil {
+			fmt.Println("get service fail")
+		}
+		sc := s.Spec.ClusterIP
+		fmt.Printf("clusterip = %s", sc)
 		//获取configmap
 		cm, err := clientset.CoreV1().ConfigMaps(nss).Get(context.TODO(), "coredns", metav1.GetOptions{})
 		if err != nil {
