@@ -163,6 +163,12 @@
 			"revisionTime": "2018-07-18T01:23:57Z"
 		},
 		{
+			"checksumSHA1": "Tutue3nEgM/87jitUcYv6ODwyNE=",
+			"path": "github.com/satori/go.uuid",
+			"revision": "b2ce2384e17bbe0c6d34077efa39dbab3e09123b",
+			"revisionTime": "2018-10-28T12:50:25Z"
+		},
+		{
 			"checksumSHA1": "V3AzyHJxzbV6/q3/1e5O39pv7XU=",
 			"path": "golang.org/x/crypto/ssh/terminal",
 			"revision": "f7b00557c8c46a1ea4b035cae84f52028c2c0564",

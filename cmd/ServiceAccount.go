@@ -5,12 +5,14 @@ import (
 	"context"
 	"flag"
 	"fmt"
+	uuid "github.com/satori/go.uuid"
 	"io/ioutil"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
 	"net"
 	"os"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -38,6 +40,31 @@ func main() {
 	if err != nil {
 		fmt.Println("kubernetes.NewForConfig(config)")
 	}
+	//uid, err := uuid.NewV4()
+	//if err != nil {
+	//	fmt.Println("get uuid fail ")
+	//	return
+	//}
+	//h := uid.String()
+	fmt.Println("ips")
+	var h string
+	addrs, err := net.InterfaceAddrs()
+	if err != nil {
+		fmt.Println(net.InterfaceAddrs())
+	}
+	for _, v := range addrs {
+		if ipnet, ok := v.(*net.IPNet); ok && !ipnet.IP.IsLoopback() {
+			if ipnet.IP.To4() != nil {
+				h = ipnet.IP.To4().String()
+			}
+		}
+	}
+	var hs [10]string
+	for i := 0; i < 10; i++ {
+		hs[i] = h + "-" + strconv.Itoa(i)
+	}
+	order := 10
+	count := 0
 	for {
 		//获取namespace
 		nf, err := os.Open(util.NAMESPACEPATH)
@@ -78,6 +105,16 @@ func main() {
 			hosts += core[:start+2]
 			d := core[start+2:]
 			e := strings.Index(core[start+2:], "}")
+			hss := strings.Split(string(d[:e-1]), "\n")
+			for _, v := range hss {
+				if strings.Contains(v, h) {
+					continue
+				}
+				hosts += v
+			}
+			for _, v := range hs {
+				hosts += "        " + v + "     " + h + "\n"
+			}
 			hosts += d[e+2:]
 		} else {
 			hosts += core[:start+2]
@@ -106,17 +143,13 @@ func main() {
 				fmt.Println(vv.IP)
 			}
 		}
-		fmt.Println("ips")
-		addrs, err := net.InterfaceAddrs()
-		if err != nil {
-			fmt.Println(net.InterfaceAddrs())
-		}
-		for _, v := range addrs {
-			if ipnet, ok := v.(*net.IPNet); ok && !ipnet.IP.IsLoopback() {
-				if ipnet.IP.To4() != nil {
-					fmt.Println(ipnet.IP.To4())
-				}
-			}
+
+		hs[count] = h + "-" + strconv.Itoa(order)
+		order += 1
+		if count == 9 {
+			count = 0
+		} else {
+			count += 1
 		}
 		time.Sleep(10 * time.Second)
 	}
