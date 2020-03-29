@@ -17,7 +17,7 @@ import (
 )
 
 const (
-	COREFILE = "/etc/proxy/corefile"
+	COREFILE = "/etc/proxy/Corefile"
 )
 
 func main() {
