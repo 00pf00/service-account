@@ -115,9 +115,9 @@ func main() {
 			d := core[start:]
 			s := strings.Index(d, "{")
 			e := strings.Index(d, "}")
-			hosts += d[:s]
+			hosts += d[:s+2]
 			fmt.Println(hosts)
-			hss := strings.Split(string(d[s+1:e-1]), "\n")
+			hss := strings.Split(string(d[s+2:e-1]), "\n")
 			for _, v := range hss {
 				if strings.Contains(v, h)  || strings.Contains(v,"fallthrough"){
 					continue
