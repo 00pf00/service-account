@@ -111,14 +111,9 @@ func main() {
 		var hosts string
 		if strings.Contains(core, "hosts") {
 			start := strings.Index(core,"hosts")
-			fmt.Println(core[:start])
-			hosts += core[:start+2]
-			d := core[start+2:]
-			fmt.Println(string(d))
+			d := core[start:]
 			s := strings.Index(d, "{")
-			fmt.Println(s)
 			e := strings.Index(d, "}")
-			fmt.Println(e)
 			hosts += d[:s]
 			hss := strings.Split(string(d[s+1:e-1]), "\n")
 			for _, v := range hss {
@@ -142,6 +137,7 @@ func main() {
 			hosts += "      fallthrough\n"
 			hosts += d[e:]
 		} else {
+			start := strings.Index(core,"}")
 			hosts += core[:start+2]
 			hosts += "    hosts {\n"
 			hosts += "        127.0.0.1     localhost\n"
