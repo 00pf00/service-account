@@ -195,7 +195,7 @@ func CheckCM(h string, epss,  hs []string) bool {
 				fmt.Printf("length = %d\n",len(kss))
 				for _, kssv := range kss {
 					fmt.Println(kssv)
-					if kssv == " " {
+					if kssv == "" {
 						continue
 					}
 					fmt.Printf("append ks = %s\n",kssv)
