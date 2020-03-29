@@ -131,6 +131,10 @@ func main() {
 				}
 				if flag {
 					hosts += v+"\n"
+					vs := strings.Split(v," ")
+					for k,v := range vs {
+						fmt.Printf("k = %v v = %v\n",k,v)
+					}
 				}
 			}
 			for _, v := range hs {
@@ -142,7 +146,9 @@ func main() {
 			start := strings.Index(core,"}")
 			hosts += core[:start+2]
 			hosts += "    hosts {\n"
-			hosts += "        127.0.0.1     localhost\n"
+			for _, v := range hs {
+				hosts += "      " + v + "     " + h + "\n"
+			}
 			hosts += "        fallthrough\n"
 			hosts += "    }\n"
 			hosts += core[start+2:]
