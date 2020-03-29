@@ -106,14 +106,15 @@ func main() {
 			e := strings.Index(core[start+2:], "}")
 			hss := strings.Split(string(d[:e-1]), "\n")
 			for _, v := range hss {
-				if strings.Contains(v, h) {
+				if strings.Contains(v, h)  || strings.Contains(v,"fallthrough"){
 					continue
 				}
 				hosts += v+"\n"
 			}
 			for _, v := range hs {
-				hosts += "        " + v + "     " + h + "\n"
+				hosts += "      " + v + "     " + h + "\n"
 			}
+			hosts += "        fallthrough\n"
 			hosts += d[e:]
 		} else {
 			hosts += core[:start+2]
