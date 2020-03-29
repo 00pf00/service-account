@@ -123,7 +123,6 @@ func updateCM(clientset *kubernetes.Clientset, nss, h string, epss, hs []string)
 		s := strings.Index(d, "{")
 		e := strings.Index(d, "}")
 		hosts += d[:s+2]
-		fmt.Println(hosts)
 		hss := strings.Split(string(d[s+2:e-1]), "\n")
 		for _, v := range hss {
 			if strings.Contains(v, h) || strings.Contains(v, "fallthrough") {
@@ -206,6 +205,8 @@ func CheckCM(h string, epss,  hs []string) bool {
 			}
 			flag := true
 			for _, hsv := range hs {
+				fmt.Println("hsv = %s",hsv)
+				fmt.Println("ks[1] = %s",ks[1])
 				if hsv == ks[1] {
 					flag = false
 					break
