@@ -136,7 +136,7 @@ func main() {
 			for _, v := range hs {
 				hosts += "      " + v + "     " + h + "\n"
 			}
-			hosts += "      fallthrough\n"
+			hosts += "      fallthrough\n    "
 			hosts += d[e:]
 		} else {
 			start := strings.Index(core,"}")
