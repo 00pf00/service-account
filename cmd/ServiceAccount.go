@@ -111,8 +111,8 @@ func main() {
 		start := strings.Index(core, "}")
 		var hosts string
 		if strings.Contains(core, "hosts") {
-			hosts += core[:start]
-			d := core[start:]
+			hosts += core[:start+2]
+			d := core[start:+2]
 			fmt.Println(string(d))
 			s := strings.Index(d, "{")
 			fmt.Println(s)
