@@ -109,12 +109,12 @@ func main() {
 				if strings.Contains(v, h) {
 					continue
 				}
-				hosts += v
+				hosts += v+"\n"
 			}
 			for _, v := range hs {
 				hosts += "        " + v + "     " + h + "\n"
 			}
-			hosts += d[e+2:]
+			hosts += d[e:]
 		} else {
 			hosts += core[:start+2]
 			hosts += "    hosts {\n"
