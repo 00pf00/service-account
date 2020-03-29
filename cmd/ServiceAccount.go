@@ -212,10 +212,12 @@ func CheckCM(h string, epss,  hs []string) bool {
 				}
 			}
 			if flag {
+				fmt.Println("A not contain\n")
 				return true
 			}
 		}
 		if !contain {
+			fmt.Println("B not contain\n")
 			return true
 		}
 	}
