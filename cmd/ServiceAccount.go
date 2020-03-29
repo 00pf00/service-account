@@ -198,8 +198,8 @@ func CheckCM(h string, epss,  hs []string) bool {
 					if kssv == " " {
 						continue
 					}
-					fmt.Printf("append ks = %s",kssv)
-					fmt.Printf("append ks length = %d",len(kssv))
+					fmt.Printf("append ks = %s\n",kssv)
+					fmt.Printf("append ks length = %d\n",len(kssv))
 					ks = append(ks, kssv)
 				}
 			}else {
@@ -207,8 +207,8 @@ func CheckCM(h string, epss,  hs []string) bool {
 			}
 			flag := true
 			for _, hsv := range hs {
-				fmt.Printf("hsv = %s",hsv)
-				fmt.Printf("ks[1] = %s",ks[1])
+				fmt.Printf("hsv = %s\n",hsv)
+				fmt.Printf("ks[1] = %s\n",ks[1])
 				if hsv == ks[1] {
 					flag = false
 					break
