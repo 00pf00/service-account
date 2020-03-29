@@ -113,8 +113,11 @@ func main() {
 		if strings.Contains(core, "hosts") {
 			hosts += core[:start]
 			d := core[start:]
+			fmt.Println(string(d))
 			s := strings.Index(d, "{")
+			fmt.Println(s)
 			e := strings.Index(d, "}")
+			fmt.Println(e)
 			hosts += d[:s]
 			hss := strings.Split(string(d[s+1:e-1]), "\n")
 			for _, v := range hss {
