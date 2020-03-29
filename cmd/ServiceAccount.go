@@ -16,6 +16,10 @@ import (
 	"time"
 )
 
+const (
+	COREFILE = "/etc/proxy/corefile"
+)
+
 func main() {
 	logfile := flag.String("log", "/home/serviceaccount.log", "")
 	flag.Parse()
@@ -64,7 +68,7 @@ func main() {
 			}
 		}
 	}
-	var hs [10]string
+	var hs []string
 	for i := 0; i < 10; i++ {
 		hs[i] = h + "-" + strconv.Itoa(i)
 	}
@@ -72,9 +76,9 @@ func main() {
 	count := 0
 	for {
 
-		 epss := []string{}
 		//eps
-		eps, err := clientset.CoreV1().Endpoints(nss).Get(context.TODO(), "proxycloud", metav1.GetOptions{})
+		epss := []string{}
+		eps, err := clientset.CoreV1().Endpoints(nss).Get(context.TODO(), util.SERVICENAME, metav1.GetOptions{})
 		if err != nil {
 			fmt.Println(err)
 		}
@@ -85,82 +89,8 @@ func main() {
 				epss = append(epss,vv.IP )
 			}
 		}
-
-		//获取clusterip
-		s, err := clientset.CoreV1().Services(nss).Get(context.TODO(), util.SERVICENAME, metav1.GetOptions{})
-		if err != nil {
-			fmt.Println(err)
-			fmt.Println("get service fail")
-		}
-		sc := s.Spec.ClusterIP
-		fmt.Printf(sc)
-		//获取configmap
-		cm, err := clientset.CoreV1().ConfigMaps(nss).Get(context.TODO(), "coredns", metav1.GetOptions{})
-		if err != nil {
-			fmt.Println("get configmap fail")
-			fmt.Println(err)
-			file.WriteString("get configmap fail ")
-		}
-		file.WriteString(cm.GetName())
-		fmt.Println(cm.GetName())
-		for k, v := range cm.Data {
-			fmt.Printf("key = %s value = %s", k, v)
-		}
-		//更新configmap
-		core := cm.Data["Corefile"]
-		var hosts string
-		if strings.Contains(core, "hosts") {
-			start := strings.Index(core,"hosts")
-			hosts+= core[:start]
-			d := core[start:]
-			s := strings.Index(d, "{")
-			e := strings.Index(d, "}")
-			hosts += d[:s+2]
-			fmt.Println(hosts)
-			hss := strings.Split(string(d[s+2:e-1]), "\n")
-			for _, v := range hss {
-				if strings.Contains(v, h)  || strings.Contains(v,"fallthrough"){
-					continue
-				}
-				flag := false
-				for _,vv := range epss {
-					if strings.Contains(v,vv){
-						flag = true
-						break
-					}
-				}
-				if flag {
-					hosts += v+"\n"
-					vs := strings.Split(v," ")
-					for k,v := range vs {
-						fmt.Printf("k = %v v = %v\n",k,v)
-					}
-				}
-			}
-			for _, v := range hs {
-				hosts += "      " + v + "     " + h + "\n"
-			}
-			hosts += "      fallthrough\n    "
-			hosts += d[e:]
-		} else {
-			start := strings.Index(core,"}")
-			hosts += core[:start+2]
-			hosts += "    hosts {\n"
-			for _, v := range hs {
-				hosts += "      " + v + "     " + h + "\n"
-			}
-			hosts += "        fallthrough\n"
-			hosts += "    }\n"
-			hosts += core[start+2:]
-		}
-		cm.Data["Corefile"] = hosts
-		ucm, err := clientset.CoreV1().ConfigMaps(nss).Update(context.TODO(), cm, metav1.UpdateOptions{})
-		if err != nil {
-			fmt.Println("update configmap fail")
-		}
-
-		for k, v := range ucm.Data {
-			fmt.Printf("updated key = %s value = %s", k, v)
+		if CheckCM(h, epss, hs) {
+			updateCM(clientset, nss, h, epss, hs)
 		}
 		hs[count] = h + "-" + strconv.Itoa(order)
 		order += 1
@@ -169,6 +99,112 @@ func main() {
 		} else {
 			count += 1
 		}
-		time.Sleep(10 * time.Second)
+		time.Sleep(20 * time.Second)
 	}
+}
+func updateCM(clientset *kubernetes.Clientset, nss, h string, epss, hs []string) {
+	//获取configmap
+	cm, err := clientset.CoreV1().ConfigMaps(nss).Get(context.TODO(), "coredns", metav1.GetOptions{})
+	if err != nil {
+		fmt.Println("get configmap fail")
+		fmt.Println(err)
+	}
+	fmt.Println(cm.GetName())
+	for k, v := range cm.Data {
+		fmt.Printf("key = %s value = %s", k, v)
+	}
+	//更新configmap
+	core := cm.Data["Corefile"]
+	var hosts string
+	if strings.Contains(core, "hosts") {
+		start := strings.Index(core, "hosts")
+		hosts += core[:start]
+		d := core[start:]
+		s := strings.Index(d, "{")
+		e := strings.Index(d, "}")
+		hosts += d[:s+2]
+		fmt.Println(hosts)
+		hss := strings.Split(string(d[s+2:e-1]), "\n")
+		for _, v := range hss {
+			if strings.Contains(v, h) || strings.Contains(v, "fallthrough") {
+				continue
+			}
+			flag := false
+			for _, vv := range epss {
+				if strings.Contains(v, vv) {
+					flag = true
+					break
+				}
+			}
+			if flag {
+				hosts += v + "\n"
+				vs := strings.Split(v, " ")
+				for k, v := range vs {
+					fmt.Printf("k = %v v = %v\n", k, v)
+				}
+			}
+		}
+		for _, v := range hs {
+			hosts += "      " + h + "     " + v + "\n"
+		}
+		hosts += "      fallthrough\n    "
+		hosts += d[e:]
+	} else {
+		start := strings.Index(core, "}")
+		hosts += core[:start+2]
+		hosts += "    hosts {\n"
+		for _, v := range hs {
+			hosts += "      " + h + "     " + v + "\n"
+		}
+		hosts += "        fallthrough\n"
+		hosts += "    }\n"
+		hosts += core[start+2:]
+	}
+	cm.Data["Corefile"] = hosts
+	ucm, err := clientset.CoreV1().ConfigMaps(nss).Update(context.TODO(), cm, metav1.UpdateOptions{})
+	if err != nil {
+		fmt.Println("update configmap fail")
+	}
+
+	for k, v := range ucm.Data {
+		fmt.Printf("updated key = %s value = %s", k, v)
+	}
+}
+
+func CheckCM(h string, epss, hs []string) bool {
+	cbs, err := ioutil.ReadFile(COREFILE)
+	if err != nil {
+		fmt.Printf("read corefile fail! err = %v", err)
+		return false
+	}
+	core := string(cbs)
+	if strings.Contains(core, "hosts") {
+		start := strings.Index(core, "hosts")
+		d := core[start:]
+		s := strings.Index(d, "{")
+		e := strings.Index(d, "}")
+		hss := strings.Split(string(d[s+2:e-1]), "\n")
+		for _, v := range hss {
+			ks := []string{}
+			if strings.Contains(v, h) {
+				kss := strings.Split(v, " ")
+				for _, kssv := range kss {
+					if v == " " {
+						continue
+					}
+					ks = append(ks, kssv)
+				}
+			}
+
+			flag := true
+			for _, v := range hss {
+				if v == ks[1] {
+				}
+			}
+			if flag {
+				return true
+			}
+		}
+	}
+	return false
 }
