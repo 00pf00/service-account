@@ -70,7 +70,7 @@ func main() {
 	}
 	var hs []string
 	for i := 0; i < 10; i++ {
-		hs[i] = h + "-" + strconv.Itoa(i)
+		hs = append(hs, h + "-" + strconv.Itoa(i))
 	}
 	order := 10
 	count := 0
@@ -89,7 +89,7 @@ func main() {
 				epss = append(epss,vv.IP )
 			}
 		}
-		if CheckCM(h, epss, hs) {
+		if CheckCM(h,epss,hs){
 			updateCM(clientset, nss, h, epss, hs)
 		}
 		hs[count] = h + "-" + strconv.Itoa(order)
@@ -171,7 +171,7 @@ func updateCM(clientset *kubernetes.Clientset, nss, h string, epss, hs []string)
 	}
 }
 
-func CheckCM(h string, epss, hs []string) bool {
+func CheckCM(h string, epss,  hs []string) bool {
 	cbs, err := ioutil.ReadFile(COREFILE)
 	if err != nil {
 		fmt.Printf("read corefile fail! err = %v", err)
