@@ -184,9 +184,14 @@ func CheckCM(h string, epss,  hs []string) bool {
 		s := strings.Index(d, "{")
 		e := strings.Index(d, "}")
 		hss := strings.Split(string(d[s+2:e-1]), "\n")
+
+		contain := false
 		for _, hssv := range hss {
 			ks := []string{}
 			if strings.Contains(hssv, h) {
+				if !contain {
+					contain = true
+				}
 				kss := strings.Split(hssv, " ")
 				fmt.Printf("length = %d\n",len(kss))
 				for _, kssv := range kss {
@@ -196,8 +201,9 @@ func CheckCM(h string, epss,  hs []string) bool {
 					}
 					ks = append(ks, kssv)
 				}
+			}else {
+				continue
 			}
-
 			flag := true
 			for _, hsv := range hs {
 				if hsv == ks[1] {
@@ -208,6 +214,9 @@ func CheckCM(h string, epss,  hs []string) bool {
 			if flag {
 				return true
 			}
+		}
+		if !contain {
+			return true
 		}
 	}
 	return false
