@@ -189,6 +189,7 @@ func CheckCM(h string, epss,  hs []string) bool {
 			if strings.Contains(hssv, h) {
 				kss := strings.Split(hssv, " ")
 				for _, kssv := range kss {
+					fmt.Println(kssv)
 					if kssv == " " {
 						continue
 					}
