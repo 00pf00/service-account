@@ -199,6 +199,7 @@ func CheckCM(h string, epss,  hs []string) bool {
 						continue
 					}
 					fmt.Printf("append ks = %s",kssv)
+					fmt.Printf("append ks length = %d",len(kssv))
 					ks = append(ks, kssv)
 				}
 			}else {
