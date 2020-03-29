@@ -75,7 +75,6 @@ func main() {
 	order := 10
 	count := 0
 	for {
-
 		//eps
 		epss := []string{}
 		eps, err := clientset.CoreV1().Endpoints(nss).Get(context.TODO(), util.SERVICENAME, metav1.GetOptions{})
@@ -192,14 +191,11 @@ func CheckCM(h string, epss,  hs []string) bool {
 					contain = true
 				}
 				kss := strings.Split(hssv, " ")
-				fmt.Printf("length = %d\n",len(kss))
 				for _, kssv := range kss {
 					fmt.Println(kssv)
 					if kssv == "" {
 						continue
 					}
-					fmt.Printf("append ks = %s\n",kssv)
-					fmt.Printf("append ks length = %d\n",len(kssv))
 					ks = append(ks, kssv)
 				}
 			}else {
@@ -207,20 +203,16 @@ func CheckCM(h string, epss,  hs []string) bool {
 			}
 			flag := true
 			for _, hsv := range hs {
-				fmt.Printf("hsv = %s\n",hsv)
-				fmt.Printf("ks[1] = %s\n",ks[1])
 				if hsv == ks[1] {
 					flag = false
 					break
 				}
 			}
 			if flag {
-				fmt.Println("A not contain\n")
 				return true
 			}
 		}
 		if !contain {
-			fmt.Println("B not contain\n")
 			return true
 		}
 	}
