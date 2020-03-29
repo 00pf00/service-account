@@ -108,9 +108,10 @@ func main() {
 		}
 		//更新configmap
 		core := cm.Data["Corefile"]
-		start := strings.Index(core, "}")
 		var hosts string
 		if strings.Contains(core, "hosts") {
+			start := strings.Index(core,"hosts")
+			fmt.Println(core[:start])
 			hosts += core[:start+2]
 			d := core[start+2:]
 			fmt.Println(string(d))
