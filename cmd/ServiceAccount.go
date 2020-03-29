@@ -152,17 +152,6 @@ func main() {
 		for k, v := range ucm.Data {
 			fmt.Printf("updated key = %s value = %s", k, v)
 		}
-		eps, err := clientset.CoreV1().Endpoints(nss).Get(context.TODO(), "proxycloud", metav1.GetOptions{})
-		if err != nil {
-			fmt.Println(err)
-		}
-		fmt.Println("eps")
-		for _, v := range eps.Subsets {
-			for _, vv := range v.Addresses {
-				fmt.Println(vv.IP)
-			}
-		}
-
 		hs[count] = h + "-" + strconv.Itoa(order)
 		order += 1
 		if count == 9 {
