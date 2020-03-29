@@ -39,12 +39,18 @@ func main() {
 	if err != nil {
 		fmt.Println("kubernetes.NewForConfig(config)")
 	}
-	//uid, err := uuid.NewV4()
-	//if err != nil {
-	//	fmt.Println("get uuid fail ")
-	//	return
-	//}
-	//h := uid.String()
+	//获取namespace
+	nf, err := os.Open(util.NAMESPACEPATH)
+	if err != nil {
+		fmt.Println("open namespace file fail ")
+	}
+	nsb, err := ioutil.ReadAll(nf)
+	if err != nil {
+		fmt.Println("read namespce fail !")
+	}
+	nss := string(nsb);
+	fmt.Println(nss)
+
 	fmt.Println("ips")
 	var h string
 	addrs, err := net.InterfaceAddrs()
@@ -65,17 +71,21 @@ func main() {
 	order := 10
 	count := 0
 	for {
-		//获取namespace
-		nf, err := os.Open(util.NAMESPACEPATH)
+
+		 epss := []string{}
+		//eps
+		eps, err := clientset.CoreV1().Endpoints(nss).Get(context.TODO(), "proxycloud", metav1.GetOptions{})
 		if err != nil {
-			fmt.Println("open namespace file fail ")
+			fmt.Println(err)
 		}
-		nsb, err := ioutil.ReadAll(nf)
-		if err != nil {
-			fmt.Println("read namespce fail !")
+		fmt.Println("eps")
+		for _, v := range eps.Subsets {
+			for _, vv := range v.Addresses {
+				fmt.Println(vv.IP)
+				epss = append(epss,vv.IP )
+			}
 		}
-		nss := string(nsb);
-		fmt.Println(nss)
+
 		//获取clusterip
 		s, err := clientset.CoreV1().Services(nss).Get(context.TODO(), util.SERVICENAME, metav1.GetOptions{})
 		if err != nil {
@@ -109,12 +119,21 @@ func main() {
 				if strings.Contains(v, h)  || strings.Contains(v,"fallthrough"){
 					continue
 				}
-				hosts += v+"\n"
+				flag := false
+				for _,vv := range epss {
+					if strings.Contains(v,vv){
+						flag = true
+						break
+					}
+				}
+				if flag {
+					hosts += v+"\n"
+				}
 			}
 			for _, v := range hs {
 				hosts += "      " + v + "     " + h + "\n"
 			}
-			hosts += "        fallthrough\n"
+			hosts += "      fallthrough\n"
 			hosts += d[e:]
 		} else {
 			hosts += core[:start+2]
